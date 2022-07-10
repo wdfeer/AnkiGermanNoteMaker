@@ -24,15 +24,16 @@ namespace AnkiGermanNoteMaker
             int i = 0;
             foreach (var node in wordNodes)
             {
-                var dfns = node.SelectNodes("dfn");
-                if (dfns != null)
-                    node.RemoveChildren(dfns);
+                var filteredOut = node.SelectNodes("dfn");
+                if (filteredOut != null)
+                    node.RemoveChildren(filteredOut);
+                filteredOut = node.SelectNodes("a[position()>1]");
+                if (filteredOut != null)
+                    node.RemoveChildren(filteredOut);
 
                 string text = node.InnerText;
-                if (int.TryParse(text, out int integer))
-                    continue;
-                if (text != searchTextBox.Text)
-                    back += text + "\n";
+                text = new string(text.Trim().Where(c => c == ' ' || char.IsLetter(c)).ToArray());
+                back += $"{i}. " + text + System.Environment.NewLine;
 
                 i++;
                 if (i >= 3)
