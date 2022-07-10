@@ -1,0 +1,23 @@
+﻿{
+    "action": "addNote",
+    "version": 6,
+    "params": {
+        "note": {
+            "deckName": "$deckName",
+            "modelName": "$modelName",
+            "fields": {
+                "Front": "$front",
+                "Back": "$back"
+            },
+            "options": {
+                "allowDuplicate": false,
+                "duplicateScope": "deck",
+                "duplicateScopeOptions": {  
+                    "deckName": "$deckName",
+                    "checkChildren": false,
+                    "checkAllModels": false
+                }
+            }
+        }
+    }
+}
