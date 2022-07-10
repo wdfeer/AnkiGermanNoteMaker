@@ -32,8 +32,8 @@ namespace AnkiGermanNoteMaker
                     node.RemoveChildren(filteredOut);
 
                 string text = node.InnerText;
-                text = new string(text.Trim().Where(c => c == ' ' || char.IsLetter(c)).ToArray());
-                back += $"{i}. " + text + System.Environment.NewLine;
+                text = string.Concat(text.Trim().Split(' ').Where(str => str.All(c => char.IsLetter(c))).Select(str => str + ' ').ToArray()).TrimEnd();
+                back += $"{i + 1}. " + text + System.Environment.NewLine;
 
                 i++;
                 if (i >= 3)
